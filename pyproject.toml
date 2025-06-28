@@ -1,0 +1,38 @@
+[project]
+name = "modal-boltz"
+version = "0.1.0"
+description = "A Python CLI tool built with Modal and Boltz"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "click>=8.0.0",
+]
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+license = {text = "MIT"}
+keywords = ["cli", "modal", "boltz"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.scripts]
+modal-boltz = "modal_boltz.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/modal-boltz"
+Repository = "https://github.com/yourusername/modal-boltz"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/modal_boltz"]
