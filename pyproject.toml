@@ -3,9 +3,10 @@ name = "modal-boltz"
 version = "0.1.0"
 description = "A Python CLI tool built with Modal and Boltz"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "click>=8.0.0",
+    "modal>=1.0.5",
 ]
 authors = [
     {name = "Your Name", email = "your.email@example.com"},
