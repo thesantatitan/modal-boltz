@@ -1,76 +1,67 @@
 # Modal Boltz
 
-A Python CLI tool built with Modal and Boltz.
+A Python CLI tool for running Boltz protein structure predictions on Modal cloud infrastructure.
+
+## Prerequisites
+
+Before using this tool, you need:
+
+1. **Modal Account**: Sign up at [modal.com](https://modal.com) and get your API token
+2. **Modal CLI**: Install and authenticate with Modal:
+
+   ```bash
+   pip install modal
+   modal token set
+   ```
 
 ## Installation
 
-### From PyPI (once published)
 
 ```bash
-pip install modal-boltz
-```
-
-### From source
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/modal-boltz.git
-cd modal-boltz
-
-# Install in development mode
-pip install -e .
+pip install git+https://github.com/thesantatitan/modal-boltz.git
 ```
 
 ### Using uv (recommended for development)
 
 ```bash
-# Install dependencies
-uv sync
-
-# Install in development mode
-uv pip install -e .
+uv tool install git+https://github.com/thesantatitan/modal-boltz.git
 ```
 
 ## Usage
 
-Once installed, you can use the `modal-boltz` command:
+The CLI provides a `predict` command to run Boltz protein structure predictions on Modal:
 
 ```bash
-# Basic hello command
-modal-boltz hello
+modal-boltz predict --gpu <gpu_type> --input-path <path> --volume-name <volume>
+```
 
-# Hello with custom name
-modal-boltz hello --name "Alice"
+### Required Parameters
 
-# Show version and info
-modal-boltz info
+- `--gpu`: GPU type to use (e.g., `A10G`, `A100`, `H100`)
+- `--input-path`: Path to input YAML configuration file, FASTA file, or directory
+- `--volume-name`: Name of the Modal volume for data storage
+
+### Optional Parameters
+
+- `--args`: Additional arguments to pass to the Boltz command
+
+### Examples
+
+```bash
+# Run prediction with a YAML configuration file
+modal-boltz predict --gpu A10G --input-path example.yaml --volume-name my-boltz-data
+
+# Run prediction with a FASTA file
+modal-boltz predict --gpu A100 --input-path protein.fasta --volume-name my-boltz-data
+
+# Run prediction with additional Boltz arguments
+modal-boltz predict --gpu H100 --input-path config.yaml --volume-name my-data --args "--num_samples 5 --recycling 3"
 
 # Show help
 modal-boltz --help
+modal-boltz predict --help
 ```
 
-## Development
+## Boltz
 
-This project uses `uv` for dependency management. To set up for development:
-
-```bash
-# Install uv if you haven't already
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Install dependencies
-uv sync
-
-# Run the CLI in development
-uv run python -m modal_boltz.cli --help
-```
-
-## Commands
-
-- `hello` - Say hello (with optional --name parameter)
-- `info` - Show version and project information
-- `--version` - Show version number
-- `--help` - Show help message
-
-## License
-
-MIT
+For more information on how to use Boltz, refer to the [Boltz documentation](https://github.com/jwohlwend/boltz/tree/main).
