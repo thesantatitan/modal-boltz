@@ -62,6 +62,12 @@ modal-boltz --help
 modal-boltz predict --help
 ```
 
+After running the command, the output will be stored in the specified Modal volume under a directory named with a unique job ID. You can access the results through the Modal web interface or CLI.
+
+```bash
+modal volume ls $VOL_NAME $JOB_ID/boltz_results_input/predictions/input
+```
+
 ## Boltz
 
 For more information on how to use Boltz, refer to the [Boltz documentation](https://github.com/jwohlwend/boltz/tree/main).
